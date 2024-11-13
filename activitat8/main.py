@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
 class Usuari(BaseModel):
@@ -10,11 +10,10 @@ class Usuari(BaseModel):
 app = FastAPI()
 
 @app.get("/usuaris/{nom}")
-async def get_usuari(nom:str,cognom:str,salari:float,edat:int,response:Response):
+async def get_usuari(nom:str,cognom:str,salari:float,edat:int,):
     usuari = {"nom":nom,"cognom":cognom,"salari":salari,"edat":edat}
     if usuari and nom=="":
-        response.status_code = 404
-        return {"Error":"Usuari no trobat"}
+        raise HTTPException(status_code=404, detail="Usuari no trobat")
     return usuari
 
 @app.post("/usuaris/")
