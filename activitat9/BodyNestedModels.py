@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-
+#Arxiu de proves per a fer proves dels 4 primers apartats
 class Item(BaseModel):
     name: str
     description: str | None = None
