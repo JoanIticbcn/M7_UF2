@@ -65,3 +65,12 @@ async def update_item(item_id: int, item: Item):
 <p>Segona captura</p>
 <img src="captures/swag2.png">
 <h4>Podem veure l'execucio del codi com fem un post del nostre item com en els tags en comptes de ser un typus de dada normal es una llista de Strings. Per als altres typus de dades mencionats anteriorment seria el mateix funcionament sent el nested model el mes complex d'aplicar degut a la complexa estructura de dades que tindriem</h4>
+
+<h2>Documentació amb Postman</h2>
+<h4>He creat un main en el que es fa la crida als 3 arxius necessaris per a l'execució de la FastAPI. Per importar els arxius he hagut de fer from {nom_carpeta} import {nom_arxiu} d'aquesta manera tinc acces als metodes creats en aquest arxiu que son els seguents:</h4>
+<h4>getConn -> Es un metode que retorna una connexio activa a la base de dades Postgres per a poder fer operacions SQL<h4>
+<h4>read_usuaris -> Es un metode que llegeix tots els registres de la taula users<h4>
+<h4>user_schema -> Es un metode que serveix per a serialitzar la sortida de dades de l'usuari en el format que nosaltres li definim en el schema<h4>
+<p>CAPTURES DE PANTALLA DE L'EXECUCIÓ DEL CODI EN POSTMAN</p>
+<img src="captures/capturapostman1.png">
+<img src="captures/capturapostman2.png">

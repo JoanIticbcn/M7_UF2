@@ -7,4 +7,6 @@ def read_usuaris(connexioR):
     cursor.execute(select_query)
     # Fetch de totes les columnes del resultat
     rows = cursor.fetchall()
+    #Tanquem la connexio
+    connexioR.close()
     return rows
