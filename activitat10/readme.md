@@ -4,3 +4,6 @@
 <img src="captures/taulabuida.png">
 <p>Despres d'executar el script csvToPostgres.py la taula ja s'ha emplenat completament i correctament amb totes les dades de forma correcta. Captura a continuació.</p>
 <img src="captures/taulaplena.png">
+
+<h4>Documentacio dels metodes fastAPI<h4>
+<p></p>

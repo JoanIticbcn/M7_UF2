@@ -1,16 +1,17 @@
-# This is a sample Python script.
+from fastapi import FastAPI
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from conn import getConn
+from read.readOptions import readOptions
+from read.readWord import readWord
+from schemas import optionsSchema
+from schemas import wordSchema
 
+app = FastAPI()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+@app.get("/penjat/tematica/opcions",response_model=list[dict])
+async def opcionsTematica():
+    return optionsSchema.optionsSchema(readOptions(getConn()))
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+@app.get("/penjat/tematica/{opcion}",response_model=list[dict])
+async def getWord(opcion:str):
+    return wordSchema.wordSchema(readWord(getConn(),opcion))
