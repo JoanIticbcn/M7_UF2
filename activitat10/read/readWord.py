@@ -1,6 +1,6 @@
-def readWord(conn,tema):
+def readWord(conn,tema : str):
     cursor = conn.cursor()
-    sqlWord = "SELECT word FROM act10 WHERE theme = %s ORDER BY RANDOM() LIMIT 1;"
-    cursor.execute(sqlWord,tema)
+    sqlword = "SELECT word FROM act10 WHERE theme = %s ORDER BY RANDOM() LIMIT 1;"
+    cursor.execute(sqlword,(tema,))
     result = cursor.fetchone()
     return result

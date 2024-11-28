@@ -8,10 +8,12 @@ from schemas import wordSchema
 
 app = FastAPI()
 
+connexio = getConn()
+
 @app.get("/penjat/tematica/opcions",response_model=list[dict])
 async def opcionsTematica():
-    return optionsSchema.optionsSchema(readOptions(getConn()))
+    return optionsSchema.optionsSchema(readOptions(connexio))
 
-@app.get("/penjat/tematica/{opcion}",response_model=list[dict])
+@app.get("/penjat/tematicas/{opcion}",response_model=dict)
 async def getWord(opcion:str):
-    return wordSchema.wordSchema(readWord(getConn(),opcion))
+    return wordSchema.wordSchemas(readWord(connexio,opcion))

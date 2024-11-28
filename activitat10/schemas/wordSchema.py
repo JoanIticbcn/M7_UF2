@@ -1,2 +1,2 @@
-def wordSchema(word) -> dict:
+def wordSchemas(word) -> dict:
     return {"Option":word}
