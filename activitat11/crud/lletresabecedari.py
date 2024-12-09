@@ -1,7 +1,6 @@
-def getabecedari(idioma,conn):
+def getabecedaris(idioma,conn):
     cursor = conn.cursor()
-    sqlabc = "SELECT %s FROM %s WHERE idioma=%s"
-    valors = ("lletrasabecedari","pantallaprincipal",idioma)
-    cursor.execute(sqlabc,valors)
+    sqlabc = "SELECT lletrasabecedari FROM pantallaprincipal WHERE idioma=%s"
+    cursor.execute(sqlabc,(idioma,))
     resultat = cursor.fetchall()
     return resultat

@@ -1,7 +1,7 @@
-def getbuttontext(idioma,conn) -> str:
+def getbuttontext(conn,idioma) -> str:
     cursor = conn.cursor()
-    sqlquery = "SELECT %s FROM %s WHERE idioma=%s"
-    valors = ("comencarpartidabutton","pantallaprincipal",idioma,)
-    cursor.execute(sqlquery,valors)
+    sqlquery = "SELECT comencarpartidabutton FROM pantallaprincipal WHERE idioma=%s"
+    cursor.execute(sqlquery,(idioma,))
     resultat = cursor.fetchone()
-    return resultat
+    print(idioma)
+    return str(resultat)

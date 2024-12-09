@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from conn import getConn
 from crud import textbtn, textdisplayinicial, postintent, estadistiquesjoc, updateEstadisticas
+from crud.lletresabecedari import getabecedaris
 from schemas.schemaabc import abcschema
 from schemas.schematextinicial import schemainitialtext
 from schemas.textbtnschema import schemabuttontext
@@ -12,19 +13,20 @@ connexio = getConn()
 
 @app.get("/penjat/btnComençar/{idioma}",response_model=dict)
 async def getBtnComensar(idioma):
-    return schemabuttontext(textbtn.getbuttontext(idioma,connexio))
+    print(idioma)
+    return schemabuttontext(textbtn.getbuttontext(connexio,idioma))
 
 @app.get("/penjat/paraulaInicial/{idioma}",response_model=dict)
 async def getParaulaComensar(idioma):
     return schemainitialtext(textdisplayinicial.gettextinicial(idioma,connexio))
 
 @app.post("/penjat/intents/")
-async def postIntent(numerointent,estatpartida,encertada,fallada,lletrautilitzada):
-    return postintent.postintentmethod(connexio,numerointent,estatpartida,encertada,fallada,lletrautilitzada)
+async def postIntent(numerointent,estatpartida,encertada,fallada,lletrautilitzada,idjugador):
+    return postintent.postintentmethod(connexio,numerointent,estatpartida,encertada,fallada,lletrautilitzada,idjugador)
 
-@app.get("/penjat/abecedari/{idioma}",response_model=list[dict])
+@app.get("/penjat/abecedari/{idioma}")
 async def getAbecedari(idioma):
-    return abcschema(getAbecedari(idioma,connexio))
+    return getabecedaris(idioma,connexio)
 
 @app.get("/penjat/estadistiques/{nom}",response_model=list)
 async def getEstadistiques(nom):
