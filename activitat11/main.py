@@ -3,8 +3,8 @@ from fastapi import FastAPI
 from conn import getConn
 from crud import textbtn, textdisplayinicial, postintent, estadistiquesjoc, updateEstadisticas
 from crud.lletresabecedari import getabecedaris
-from schemas.schemaabc import abcschema
 from schemas.schematextinicial import schemainitialtext
+from schemas.statsschema import statsschemas
 from schemas.textbtnschema import schemabuttontext
 
 app = FastAPI()
@@ -24,13 +24,13 @@ async def getParaulaComensar(idioma):
 async def postIntent(numerointent,estatpartida,encertada,fallada,lletrautilitzada,idjugador):
     return postintent.postintentmethod(connexio,numerointent,estatpartida,encertada,fallada,lletrautilitzada,idjugador)
 
-@app.get("/penjat/abecedari/{idioma}")
+@app.get("/penjat/abecedari/{idioma}",response_model=list)
 async def getAbecedari(idioma):
     return getabecedaris(idioma,connexio)
 
 @app.get("/penjat/estadistiques/{nom}",response_model=list)
 async def getEstadistiques(nom):
-    return estadistiquesjoc.getEstadistiquesdeljoc(connexio,nom)
+    return statsschemas(estadistiquesjoc.getEstadistiquesdeljoc(connexio,nom))
 
 @app.put("/penjat/estadistiques/")
 async def actualitzarEstadistiques(nomjugador,puntspartidaactual,totalpartides,partidesguanyades,partidaambmespunts):
