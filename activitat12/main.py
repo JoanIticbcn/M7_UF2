@@ -1,9 +1,15 @@
 from fastapi import FastAPI
 
+from CRUDpantallaprincipal.deletepantallaprincipal import deletepantallap
+from CRUDpantallaprincipal.getinfopantallap import getPantallaprincipalcrud
+from CRUDpantallaprincipal.postpprincipal import postpantallaprincipalcrud
+from CRUDpantallaprincipal.putpantallaprincipal import putpantallap
 from CRUDparaules.cruddeleteparaula import crudparauladelete
 from CRUDparaules.crudgetparaules import getParaulesss
 from CRUDparaules.crudpostparaula import postcrudparaula
+from CRUDparaules.crudputparaula import putcrudparaula
 from conn import getConn
+from schemas.pantallaschemap import pantallaprincipalschemas
 from schemas.paraulesschema import paraulesgetschemas
 
 app = FastAPI()
@@ -21,7 +27,7 @@ async def postParaules(parauladisplayinicial,parauladisplayactual,paraulasecreta
 
 @app.put("/penjat/paraules")
 async def putParaules(parauladisplayactual,idjugador):
-    return postcrudparaula(connexio,parauladisplayactual,idjugador)
+    return putcrudparaula(connexio,parauladisplayactual,idjugador)
 
 @app.delete("/penjat/paraules")
 async def deleteParaules(idjugador):
@@ -29,20 +35,20 @@ async def deleteParaules(idjugador):
 
 ###Pantalla principal
 @app.get("/penjat/pantallaprincipal",response_model=dict)
-async def getBtnComensar(idioma):
-    return pass
+async def getPantallaprincipal():
+    return pantallaprincipalschemas(getPantallaprincipalcrud(connexio))
 
 @app.post("/penjat/pantallaprincipal")
-async def getBtnComensar(idioma):
-    return pass
+async def postpantalla(idioma,comencarpartidabutton,lletrasabecedari):
+    return postpantallaprincipalcrud(connexio,idioma,comencarpartidabutton,lletrasabecedari)
 
 @app.put("/penjat/pantallaprincipal")
-async def getBtnComensar(idioma):
-    return pass
+async def updatepantallaprincipal(idioma,comencarpartidabutton):
+    return putpantallap(connexio,idioma,comencarpartidabutton)
 
 @app.delete("/penjat/pantallaprincipal")
-async def getBtnComensar(idioma):
-    return pass
+async def deletepantallaprincipal(idioma):
+    return deletepantallap(connexio,idioma)
 
 ####Usuaris
 @app.get("/penjat/usuaris",response_model=dict)
