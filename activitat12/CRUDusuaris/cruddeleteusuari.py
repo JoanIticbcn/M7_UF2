@@ -1,6 +1,6 @@
-def crudparauladelete(conn,idjugador):
+def crudusuaridelete(conn,idjugador):
     cursor = conn.cursor()
-    query = "DELETE FROM usuaris where idjugador=%s"
+    query = "DELETE FROM paraules where idjugador=%s"
     cursor.execute(query,(int(idjugador),))
     conn.commit()
     return "Delete succesfull"
