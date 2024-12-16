@@ -8,9 +8,12 @@ from CRUDparaules.cruddeleteparaula import crudparauladelete
 from CRUDparaules.crudgetparaules import getParaulesss
 from CRUDparaules.crudpostparaula import postcrudparaula
 from CRUDparaules.crudputparaula import putcrudparaula
+from CRUDregistrejoc.crudregistrejoc import getregistredeljoc
+from CRUDusuaris.cruddeleteusuari import crudusuaridelete
 from CRUDusuaris.crudgetpenjatusuaris import getcrudUsuarisPenjat
 from CRUDusuaris.crudpostusuari import postusuari
 from conn import getConn
+from schemas.crudregistreschema import registreschemas
 from schemas.pantallaschemap import pantallaprincipalschemas
 from schemas.paraulesschema import paraulesgetschemas
 from schemas.usuarisschema import usuarisschemas1
@@ -68,21 +71,21 @@ El de actualitzar els usuaris del penjat ja esta fet a la activitat 11 com a un 
 
 @app.delete("/penjat/deleteusuaris")
 async def deleteusuari(idjugador):
-    return crudparauladelete(connexio,idjugador)
+    return crudusuaridelete(connexio,idjugador)
 
 ####Registre Joc
-@app.get("/penjat/registrejoc",response_model=dict)
-async def getBtnComensar(idioma):
+@app.get("/penjat/getregistrejoc",response_model=dict)
+async def getregistrejoc():
+    registreschemas(getregistredeljoc(connexio))
+
+@app.post("/penjat/postregistrejoc")
+async def postregisrejoc(idioma):
     return pass
 
-@app.post("/penjat/registrejoc")
-async def getBtnComensar(idioma):
+@app.put("/penjat/putregistrejoc")
+async def putregistrejoc(idioma):
     return pass
 
-@app.put("/penjat/registrejoc")
-async def getBtnComensar(idioma):
-    return pass
-
-@app.delete("/penjat/registrejoc")
-async def getBtnComensar(idioma):
+@app.delete("/penjat/deleteregistrejoc")
+async def deleteregistrejoc(idioma):
     return pass
