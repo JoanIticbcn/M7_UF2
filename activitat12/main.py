@@ -8,6 +8,9 @@ from CRUDparaules.cruddeleteparaula import crudparauladelete
 from CRUDparaules.crudgetparaules import getParaulesss
 from CRUDparaules.crudpostparaula import postcrudparaula
 from CRUDparaules.crudputparaula import putcrudparaula
+from CRUDregistrejoc.cruddeletereg import cruddelteregistredeljoc
+from CRUDregistrejoc.crudpostregistrejoc import postregistredeljoccrud
+from CRUDregistrejoc.crudputregistrejoc import putcrudregistrejoc
 from CRUDregistrejoc.crudregistrejoc import getregistredeljoc
 from CRUDusuaris.cruddeleteusuari import crudusuaridelete
 from CRUDusuaris.crudgetpenjatusuaris import getcrudUsuarisPenjat
@@ -76,16 +79,16 @@ async def deleteusuari(idjugador):
 ####Registre Joc
 @app.get("/penjat/getregistrejoc",response_model=dict)
 async def getregistrejoc():
-    registreschemas(getregistredeljoc(connexio))
+    return registreschemas(getregistredeljoc(connexio))
 
 @app.post("/penjat/postregistrejoc")
-async def postregisrejoc(idioma):
-    return pass
+async def postregisrejoc(numerointent,estatpartida,encertada,fallada,lletrautilitzada,idjugador):
+    return postregistredeljoccrud(connexio,numerointent,estatpartida,encertada,fallada,lletrautilitzada,idjugador)
 
 @app.put("/penjat/putregistrejoc")
-async def putregistrejoc(idioma):
-    return pass
+async def putregistrejoc(numerointent,estatpartida,encertada,fallada,lletrautilitzada,idjugador):
+    return putcrudregistrejoc(connexio,numerointent,estatpartida,encertada,fallada,lletrautilitzada,idjugador)
 
 @app.delete("/penjat/deleteregistrejoc")
-async def deleteregistrejoc(idioma):
-    return pass
+async def deleteregistrejoc(idjugador):
+    return cruddelteregistredeljoc(connexio,idjugador)
